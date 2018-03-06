@@ -5,10 +5,15 @@
  */
 package fc.is.modelo;
 
+import org.hibernate.Session;
+
 /**
  *
  * @author Oxium
  */
 public class SkillsDAO {
-    
+    Session session = null;
+    public SkillsDAO() {
+        this.session = (Session) HibernateUtil.getSessionFactory();
+    }
 }
