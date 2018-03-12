@@ -11,9 +11,9 @@ import org.hibernate.Session;
  *
  * @author Oxium
  */
-public class FormacionAcademicaDAO {
+public class FormacionacademicaDAO {
     Session session = null;
-    public FormacionAcademicaDAO() {
+    public FormacionacademicaDAO() {
         this.session = (Session) HibernateUtil.getSessionFactory();
     }
 }
