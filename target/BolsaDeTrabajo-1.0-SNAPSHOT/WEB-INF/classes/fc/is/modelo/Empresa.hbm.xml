@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/02/2018 02:36:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fc.is.modelo.Empresa" table="empresa" schema="bolsa" optimistic-lock="version">
+        <id name="idempresa" type="int">
+            <column name="idempresa" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="oficinas" type="string">
+            <column name="oficinas" not-null="true" />
+        </property>
+        <property name="fundacion" type="string">
+            <column name="fundacion" not-null="true" />
+        </property>
+        <property name="numeroempleados" type="int">
+            <column name="numeroempleados" not-null="true" />
+        </property>
+        <property name="contacto" type="string">
+            <column name="contacto" not-null="true" />
+        </property>
+        <property name="presidente" type="string">
+            <column name="presidente" not-null="true" />
+        </property>
+        <set name="experiencialaborals" table="experiencialaboral" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempresa" not-null="true" />
+            </key>
+            <one-to-many class="fc.is.modelo.Experiencialaboral" />
+        </set>
+        <set name="vacantes" table="vacante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idempresa" not-null="true" />
+            </key>
+            <one-to-many class="fc.is.modelo.Vacante" />
+        </set>
+    </class>
+</hibernate-mapping>

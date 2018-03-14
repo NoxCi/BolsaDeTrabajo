@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/02/2018 02:36:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fc.is.modelo.Vacante" table="vacante" schema="bolsa" optimistic-lock="version">
+        <id name="idvacante" type="int">
+            <column name="idvacante" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="empresa" class="fc.is.modelo.Empresa" fetch="select">
+            <column name="idempresa" not-null="true" />
+        </many-to-one>
+        <property name="actividades" type="string">
+            <column name="actividades" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" not-null="true" />
+        </property>
+        <property name="puesto" type="string">
+            <column name="puesto" not-null="true" />
+        </property>
+        <property name="horario" type="string">
+            <column name="horario" not-null="true" />
+        </property>
+        <property name="lugar" type="string">
+            <column name="lugar" not-null="true" />
+        </property>
+        <property name="salario" type="int">
+            <column name="salario" not-null="true" />
+        </property>
+        <set name="profesionistas" table="postular" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idvacante" not-null="true" />
+            </key>
+            <many-to-many entity-name="fc.is.modelo.Profesionista">
+                <column name="idprofesionista" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

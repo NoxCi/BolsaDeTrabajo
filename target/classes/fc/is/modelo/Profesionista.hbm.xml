@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/02/2018 02:36:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fc.is.modelo.Profesionista" table="profesionista" schema="bolsa" optimistic-lock="version">
+        <id name="idprofesionista" type="int">
+            <column name="idprofesionista" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" not-null="true" />
+        </property>
+        <property name="correo" type="string">
+            <column name="correo" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="8" />
+        </property>
+        <property name="contrasena" type="string">
+            <column name="contrasena" not-null="true" />
+        </property>
+        <property name="nacionalidad" type="string">
+            <column name="nacionalidad" />
+        </property>
+        <property name="carrera" type="string">
+            <column name="carrera" />
+        </property>
+        <set name="formacionacademicas" table="formacionacademica" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idprofesionista" not-null="true" />
+            </key>
+            <one-to-many class="fc.is.modelo.Formacionacademica" />
+        </set>
+        <set name="skillses" table="skills" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idprofesionista" not-null="true" />
+            </key>
+            <one-to-many class="fc.is.modelo.Skills" />
+        </set>
+        <set name="vacantes" table="postular" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="idprofesionista" not-null="true" />
+            </key>
+            <many-to-many entity-name="fc.is.modelo.Vacante">
+                <column name="idvacante" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="experiencialaborals" table="experiencialaboral" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idprofesionista" not-null="true" />
+            </key>
+            <one-to-many class="fc.is.modelo.Experiencialaboral" />
+        </set>
+    </class>
+</hibernate-mapping>

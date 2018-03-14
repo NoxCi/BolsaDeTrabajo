@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 20/02/2018 02:36:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="fc.is.modelo.Skills" table="skills" schema="bolsa" optimistic-lock="version">
+        <composite-id name="id" class="fc.is.modelo.SkillsId">
+            <key-property name="idprofesionista" type="int">
+                <column name="idprofesionista" />
+            </key-property>
+            <key-property name="nombre" type="string">
+                <column name="nombre" />
+            </key-property>
+            <key-property name="grado" type="string">
+                <column name="grado" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="profesionista" class="fc.is.modelo.Profesionista" update="false" insert="false" fetch="select">
+            <column name="idprofesionista" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

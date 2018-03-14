@@ -6,14 +6,36 @@
 package fc.is.modelo;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author Oxium
  */
 public class ExperiencialaboralDAO {
-    Session session = null;
+    private SessionFactory sessionFactory;
+    
     public ExperiencialaboralDAO() {
-        this.session = (Session) HibernateUtil.getSessionFactory();
+        this.sessionFactory = HibernateUtil.getSessionFactory();
+    }
+        public void guarda(Experiencialaboral p){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        try {
+           tx = session.beginTransaction();
+         
+           session.persist(p);
+           
+           tx.commit();
+        }
+        catch (Exception e) {
+           if (tx!=null){ 
+               tx.rollback();
+           }
+           e.printStackTrace(); 
+        }finally {
+           session.close();
+        }
     }
 }
